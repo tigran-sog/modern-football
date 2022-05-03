@@ -18,3 +18,5 @@ This repository scrapes a dataset of player statistics since the 1990s across th
 - **historic goals assists** - *[to be released]*
 
 - **best seasons** - [Interactive version **here**](https://public.tableau.com/views/Bestattackingseasonsmodernfootball/Bestseasons?:language=en-GB&:display_count=n&:origin=viz_share_link&:device=desktop)
+
+![best seasons viz](best_seasons.png?raw=true)
