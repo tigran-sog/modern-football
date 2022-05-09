@@ -9,14 +9,14 @@ This repository scrapes a dataset of player statistics since the 1990s across th
 
 - **all seasons** - A cleaned and manually corrected dataset of individual-season statistics for every player who played at least one game in the top 5 European leagues in the timeframe (see `scraping.R`)
 
-- **players summed** - Total league career statistics for every player, created by summing the statistics of each season for every player (see `players summed.R`) *[to be released]*
+- **players summed** - Total league career statistics for every player, created by summing the statistics of each season for every player (see `players summed.R`) 
 
 - **best seasons** - A modified version of `all seasons.csv` that merges rows for players that played for more than one team in a single season (see `best seasons.R`)
 
 ### You can find the following visualisations:
 
-- **historic goals assists** - *[to be released]*
+- **historic goals assists** - [Interactive version **here**](https://public.tableau.com/views/Whohavebeenthebiggestattackingthreatsofthemodernera/Biggestattackingthreatsofthemodernera?:language=en-GB&:display_count=n&:origin=viz_share_link&:device=desktop)
 
 - **best seasons** - [Interactive version **here**](https://public.tableau.com/views/Bestattackingseasonsmodernfootball/Bestseasons?:language=en-GB&:display_count=n&:origin=viz_share_link&:device=desktop)
 
-![best seasons viz](best%20seasons.png?raw=true)
+![best seasons viz](historic%20goals%20assists.png?raw=true)
