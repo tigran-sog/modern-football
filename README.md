@@ -20,8 +20,7 @@ This repository scrapes and analyses player statistics since the 1992/93 season 
 - **best seasons** - [Interactive version **here**](https://public.tableau.com/views/Bestattackingseasonsmodernfootball/Bestseasons?:language=en-GB&:display_count=n&:origin=viz_share_link&:device=desktop)
 
 
-![best seasons viz](viz/2324%20npg%20xa%20export.png?raw=true)
-
+![1992/93 - 2023/24 NPG vs A viz](viz/9223%20npg%20a%20export.png?raw=true)
 
 ### /code/
 
