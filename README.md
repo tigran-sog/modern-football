@@ -1,8 +1,8 @@
 # modern-football
-**Historical analysis of statistics from football's modern era using FBRef data.**
+**Visualisations of football statistics from the top 5 European leagues since the 1990s**
 
 
-This repository scrapes a dataset of player statistics since the 1990s across the top 5 European leagues from FBRef, starting from the earliest season in which both non-penalty goals and assists were recorded in that league. Includes stats for 16,242 players over 29 seasons.
+This repository scrapes and analyses player statistics since the 1992/93 season across the top 5 European leagues from FBRef, starting from the earliest season in which both non-penalty goals and assists were recorded in that league. Includes stats for 16,053 players over 31 seasons.
 
 
 ### You can find the following datasets:
@@ -19,4 +19,17 @@ This repository scrapes a dataset of player statistics since the 1990s across th
 
 - **best seasons** - [Interactive version **here**](https://public.tableau.com/views/Bestattackingseasonsmodernfootball/Bestseasons?:language=en-GB&:display_count=n&:origin=viz_share_link&:device=desktop)
 
-![best seasons viz](historic%20goals%20assists.png?raw=true)
+
+![best seasons viz](viz/2324%20npg%20xa%20export.png?raw=true)
+
+
+### /code/
+
+- **scraping.R** - Collecting FBRef data from seasons 1992/93 to 2023/24 and exporting as datasets
+- **1992_2023 summed.R** - Analysis of 1992/93 to 2023/24 seasons (player stats summed)
+- **2023_24 season.R** - Analysis of 2023/24 season
+
+### /data/
+
+- **1992 to 2023 summed.csv**
+- **1992 to 2023 per 90.csv**
