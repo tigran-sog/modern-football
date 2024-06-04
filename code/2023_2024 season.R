@@ -84,10 +84,10 @@ ggplot(full_2324_per90_display %>% mutate(color =  ifelse(is.na(Display2324), "G
                   alpha = 0.9,
                   force = 2,
                   point.padding = .5) +
-  scale_size(range = c(6.5, 15), name="Minutes played") +
+  scale_size(range = c(6, 14), name="Minutes played") +
   #xlim(0,0.54) +
   #ylim(0,0.101) +
-  scale_x_continuous(limits = c(0, 0.55), expand = c(0, 0.0075)) +
+  scale_x_continuous(limits = c(0, 0.56), expand = c(0, 0.0075)) +
   scale_y_continuous(limits = c(0, 1), expand = c(0, 0.02)) +
   #geom_abline(slope = 1, intercept = 0) + 
   labs(x = 'Expected Assists per 90',
