@@ -62,7 +62,7 @@ font_add("Titillium Web SemiBold", "C:/WINDOWS/FONTS/TITILLIUMWEB-SEMIBOLD.TTF")
 positions_colors <- c("Grey", "Defender", "Midfielder", "Attacking midfielder", "Forward")
 
 # Then make a corresponding vector of colors
-colors <- c("darkgrey", "#F3AA60", "#EF6262", "#2D791D", "#1D5B79")
+colors <- c("grey", "#F3AA60", "#EF6262", "#2D791D", "#1D5B79")
 
 
 all_per90_display <- read_csv('data/1992 to 2023 per 90 display.csv')
@@ -81,15 +81,12 @@ ggplot(all_per90_display %>% mutate(Display = if_else(!is.na(Display) & minAge >
                   force = 2,
                   point.padding = .5) +
   scale_size(range = c(4, 15), name="Minutes played") +
-  #xlim(0,0.6) +
-  #ylim(0,1) +
   scale_x_continuous(limits = c(0, 0.5), expand = c(0, 0.005)) +
   scale_y_continuous(limits = c(0, .87), expand = c(0, 0.01)) +
-  #geom_abline(slope = 1, intercept = 0) + 
   labs(x = 'Assists per 90',
        y = 'Non-penalty Goals per 90',
        title = 'Who have been the most productive players\nsince the 1990s?',
-       subtitles = 'All players since the 1990s by non-penalty goals and assists with at\nleast 7,000 minutes played. Points scaled by minutes played.') +
+       subtitles = 'All players from the 1990s to the end of the 2023/24 season by non-penalty goals and assists\nwith at least 7,000 minutes played. Points scaled by minutes played.') +
   football_theme() +
   guides(size = 'none',
          col = 'none') -> plot_9223_xa_npg
@@ -100,31 +97,45 @@ ggsave("viz/9223 a vs npg.png", plot_9223_xa_npg, width = 25, height = 29, dpi =
 
 
 ### GRAPH: NPG per 90 vs xA (coloured by age)
+all_per90_display_age <- all_per90_display %>% mutate(age_bracket = case_when(Born >= 1990 ~ '1990 or after',
+                                                                              Born < 1990 & Born >= 1980 ~ '1980 to 1989',
+                                                                              Born < 1980 ~ 'Before 1980'))
+
+all_per90_display_age %>% pull(age_bracket) %>% table() # Roughly equal distribution of ages in dataset
+
+age_names <- c('Grey','1990 or after', '1980 to 1989', 'Before 1980')
+age_colors <- c("grey", "#ee8419", "#2D791D", "#1D5B79")
+age_colors <- c("grey", "#691D79", "#1D5B79", "#2D791D")
+
+
 # Plot
-ggplot(all_per90_display %>% mutate(color =  ifelse(is.na(Display), NA, Born)) %>%
+ggplot(all_per90_display_age %>% mutate(Display = if_else(!is.na(Display) & minAge >= 27, paste0(Display, "*"), Display),
+                                        color =  ifelse(is.na(DisplayAge), "Grey", age_bracket)) %>%
          arrange(desc(color == "Grey")),
-       aes(x = A, y = NPG, label = Display, size = Minutes, col = color)) +
+       aes(x = A, y = NPG, label = DisplayAge, size = Minutes, col = color)) +
   geom_point(alpha = 0.5) +
-  #scale_color_gradient(low = "purple", high = "yellow", na.value = "grey") +
-  scale_color_viridis_c(na.value = "grey") +
+  scale_color_manual(values = setNames(age_colors, age_names)) +
   geom_text_repel(col = '#222222',
-                  hjust=-.075,vjust=0,
+                  hjust = -0.15, vjust = 0.05,
                   show.legend = FALSE,
                   family = 'Titillium Web',
-                  alpha = 0.9) +
-  scale_size(range = c(4, 14), name="Minutes played") +
-  #xlim(0,0.6) +
-  #ylim(0,1) +
-  scale_x_continuous(limits = c(0, 0.5), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(0, .95), expand = c(0, 0.01)) +
-  #geom_abline(slope = 1, intercept = 0) + 
+                  alpha = 0.9,
+                  force = 2,
+                  point.padding = .5) +
+  scale_size(range = c(4, 15), name="Minutes played") +
+  scale_x_continuous(limits = c(0.08, 0.5), expand = c(0, 0.01)) +
+  scale_y_continuous(limits = c(0.1, .87), expand = c(0, 0.01)) +
   labs(x = 'Assists per 90',
        y = 'Non-penalty Goals per 90',
-       title = 'Who have been the most productive players\nsince the 1990s?',
-       subtitles = 'All players since the 1990s by non-penalty goals and assists\nwith at least 3,500 minutes played. Points scaled by minutes played.',
-       caption = 'Data from FBRef between 1992/3 and 2023/24 seasons (depending on the league).\n@tigran_football   /u/Jinshanling') +
+       title = 'Are recent generations of attackers more complete?',
+       subtitles = 'Goal contribution rates of attacking players since the 1990s, coloured by generation.\nPlayers born before 1980 are under-represented among those with both high goalscoring and assisting rates.') +
   football_theme() +
+  theme(plot.subtitle = element_text(size = 32, color = '#222222',
+                                     margin = margin(b = 20)), # Adjust subtitle size
+  ) +
   guides(size = 'none',
-         col = 'none') -> plot_9224_xa_npg_age
-ggsave("viz/9224 a vs npg age.pdf", plot_9224_xa_npg_age, width = 25, height = 29,
+         col = 'none') -> plot_9223_xa_npg_age
+ggsave("viz/9223 a vs npg age.pdf", plot_9223_xa_npg_age, width = 25, height = 29,
+       bg = 'transparent')
+ggsave("viz/9223 a vs npg age.png", plot_9223_xa_npg_age, width = 25, height = 29, dpi = 96,
        bg = 'transparent')
