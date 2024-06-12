@@ -62,11 +62,12 @@ font_add("Titillium Web SemiBold", "C:/WINDOWS/FONTS/TITILLIUMWEB-SEMIBOLD.TTF")
 positions_colors <- c("Grey", "Defender", "Midfielder", "Attacking midfielder", "Forward")
 
 # Then make a corresponding vector of colors
-colors <- c("grey", "#F3AA60", "#EF6262", "#2D791D", "#1D5B79")
+colors <- c("#D3D3D3", "#F3AA60", "#EF6262", "#2D791D", "#1D5B79")
 
-
+# Re-import dataset with highlighted surnames for labelling
 all_per90_display <- read_csv('data/1992 to 2023 per 90 display.csv')
 
+# Plot
 ggplot(all_per90_display %>% mutate(Display = if_else(!is.na(Display) & minAge >= 27, paste0(Display, "*"), Display),
         color =  ifelse(is.na(Display), "Grey", Position)) %>%
          arrange(desc(color == "Grey")),
@@ -78,15 +79,15 @@ ggplot(all_per90_display %>% mutate(Display = if_else(!is.na(Display) & minAge >
                   show.legend = FALSE,
                   family = 'Titillium Web',
                   alpha = 0.9,
-                  force = 2,
+                  force = 1.5,
                   point.padding = .5) +
-  scale_size(range = c(4, 15), name="Minutes played") +
+  scale_size(range = c(5, 14), name="Minutes played") +
   scale_x_continuous(limits = c(0, 0.5), expand = c(0, 0.005)) +
   scale_y_continuous(limits = c(0, .87), expand = c(0, 0.01)) +
   labs(x = 'Assists per 90',
        y = 'Non-penalty Goals per 90',
-       title = 'Who have been the most productive players\nsince the 1990s?',
-       subtitles = 'All players from the 1990s to the end of the 2023/24 season by non-penalty goals and assists\nwith at least 7,000 minutes played. Points scaled by minutes played.') +
+       title = 'Which players have been the biggest attacking\nthreats since the 1990s?',
+       subtitles = 'All players with at least 7,000 minutes played in the top 5 European leagues from the 90s\nto the end of the 2023/24 season. The larger the name, the more minutes played.') +
   football_theme() +
   guides(size = 'none',
          col = 'none') -> plot_9223_xa_npg
@@ -97,6 +98,10 @@ ggsave("viz/9223 a vs npg.png", plot_9223_xa_npg, width = 25, height = 29, dpi =
 
 
 ### GRAPH: NPG per 90 vs xA (coloured by age)
+# Re-import dataset with highlighted surnames for labelling
+all_per90_display <- read_csv('data/1992 to 2023 per 90 display.csv')
+
+# Add column for ages
 all_per90_display_age <- all_per90_display %>% mutate(age_bracket = case_when(Born >= 1990 ~ '1990 or after',
                                                                               Born < 1990 & Born >= 1980 ~ '1980 to 1989',
                                                                               Born < 1980 ~ 'Before 1980'))
@@ -120,10 +125,10 @@ ggplot(all_per90_display_age %>% mutate(Display = if_else(!is.na(Display) & minA
                   show.legend = FALSE,
                   family = 'Titillium Web',
                   alpha = 0.9,
-                  force = 2,
+                  force = 1.5,
                   point.padding = .5) +
-  scale_size(range = c(4, 15), name="Minutes played") +
-  scale_x_continuous(limits = c(0.08, 0.5), expand = c(0, 0.01)) +
+  scale_size(range = c(4, 13), name="Minutes played") +
+  scale_x_continuous(limits = c(0.07, 0.5), expand = c(0, 0.01)) +
   scale_y_continuous(limits = c(0.1, .87), expand = c(0, 0.01)) +
   labs(x = 'Assists per 90',
        y = 'Non-penalty Goals per 90',
@@ -139,3 +144,4 @@ ggsave("viz/9223 a vs npg age.pdf", plot_9223_xa_npg_age, width = 25, height = 2
        bg = 'transparent')
 ggsave("viz/9223 a vs npg age.png", plot_9223_xa_npg_age, width = 25, height = 29, dpi = 96,
        bg = 'transparent')
+
