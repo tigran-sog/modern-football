@@ -16,15 +16,10 @@ This repository scrapes and visualises player statistics since the 1992/93 seaso
 
 
 ### Visualisations
+*You can view all my visualisations with [this link.](Visualisations.md)*
 
-[Click **here** for the interactive version of this graph](https://public.tableau.com/views/Whohavebeenthemostproductiveplayerssincethe1990s/Dashboard1?:language=en-GB&:sid=&:display_count=n&:origin=viz_share_link)
+
+[Click **here** for the interactive version of this graph:](https://public.tableau.com/views/Whohavebeenthemostproductiveplayerssincethe1990s/Dashboard1?:language=en-GB&:sid=&:display_count=n&:origin=viz_share_link)
 
 
 ![1992/93 - 2023/24 NPG vs A viz](viz/9223%20npg%20a%20export.png?raw=true)
-
-
-
-![1992/93 - 2023/24 NPG vs A viz](viz/9223%20npg%20a%20age%20export.png)
-
-
-![1992/93 - 2023/24 NPG vs A viz](viz/2324%20npg%20xa%20export.png)
