@@ -379,7 +379,7 @@ all_seasons <- bind_rows(all_2017_2023_seasons,fbref_1992_2017_seasons) %>%
 # 1992/93 - 2023/24 (no advanced stats)
 write_excel_csv(all_seasons,'data/1992 to 2023 seasons.csv')
 
-# 2016/17 - 2022/23 (for joining with Understat)
+# 2016/17 - 2022/23 (for joining with US)
 
 # 2017/18 - 2023/24
 write_excel_csv(all_2017_2023_seasons,'data/2017 to 2023 seasons.csv')
