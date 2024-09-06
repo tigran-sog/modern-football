@@ -28,7 +28,7 @@ all_summed <- all_seasons %>% select(Player,player_id,Position,Squad,Comp,Nation
     Player == "Shinji Kagawa" ~ "Attacking midfielder",
     Player == "Juninho Pernambucano" ~ "Attacking midfielder",
     Player == "Martin Ødegaard" ~ "Attacking midfielder",
-    Player == "Burno Fernandes" ~ "Attacking midfielder",
+    Player == "Bruno Fernandes" ~ "Attacking midfielder",
     Player == "Domenico Berardi" ~ "Attacking midfielder",
     Player == "Christian Eriksen" ~ "Attacking midfielder",
     Player == "Zvjezdan Misimović" ~ "Attacking midfielder",
